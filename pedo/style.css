@@ -571,6 +571,8 @@ footer {
   text-align: center;
   background: #1e6b3e;
   color: white;
+  position: relative;
+  left: 80px;
 }
 
 .btn-primary:hover {
