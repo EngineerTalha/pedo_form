@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <a href="#" class="forgot-link">Forgot Password?</a>
         </div>
 
-        <button type="submit" class="btn-primary btn-full">Login</button>
+        <button type="submit" class="btn-primary1 btn-full">Login</button>
       </form>
 
       <div class="auth-footer">
