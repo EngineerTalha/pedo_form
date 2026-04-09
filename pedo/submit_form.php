@@ -1,6 +1,17 @@
 <?php
 // submit_form.php
 require_once 'config.php';
+session_start();
+
+header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+header('Cache-Control: post-check=0, pre-check=0', false);
+header('Pragma: no-cache');
+header('Expires: 0');
+
+if (!isset($_SESSION['user_id'])) {
+    header('Location: login.php');
+    exit;
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
@@ -158,7 +169,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <body>
             <div class='success'>✓ Application Submitted Successfully!</div>
             <div class='message'>Your application has been recorded. Application ID: #$application_id</div>
-            <a href='pedoform.html' class='btn'>Submit Another Application</a>
+            <a href='pedoform.php' class='btn'>Submit Another Application</a>
         </body>
         </html>";
     } else {
@@ -167,7 +178,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     $conn->close();
 } else {
-    header('Location: pedoform.html');
+    header('Location: pedoform.php');
     exit();
 }
 ?>

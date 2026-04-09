@@ -1,6 +1,20 @@
-<!-- Add this at the top of your pedoform.html or rename to pedoform.php -->
 <?php
 session_start();
+session_regenerate_id(true);
+
+header('Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0');
+header('Cache-Control: post-check=0, pre-check=0', false);
+header('Pragma: no-cache');
+header('Expires: Sun, 19 Nov 1978 05:00:00 GMT');
+header('Last-Modified: ' . gmdate('D, d M Y H:i:s T'));
+header('ETag: "' . md5(time()) . '"');
+
+if (!isset($_SESSION['user_id'])) {
+    header('Location: login.php');
+    exit;
+}
+
+$session_token = md5($_SESSION['user_id'] . session_id());
 ?>
 
 <!DOCTYPE html>
@@ -12,6 +26,9 @@ session_start();
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div style="text-align: right; padding: 15px; background: #f0f0f0;">
+    <a href="logout.php" style="color: #1a5f7a; font-weight: bold; text-decoration: none;">🚪 Logout</a>
+  </div>
   <div class="form-container">
     <!-- Your existing header content remains the same -->
     
@@ -182,6 +199,30 @@ session_start();
       </footer>
     </form>
   </div>
+
+  <script>
+    // Verify session is still active on page load
+    window.addEventListener('load', function() {
+      const checkSession = async () => {
+        try {
+          const response = await fetch('check_session.php');
+          if (!response.ok || response.status === 401) {
+            window.location.href = 'login.php';
+          }
+        } catch (error) {
+          console.error('Session check failed:', error);
+        }
+      };
+      checkSession();
+    });
+
+    // Disable browser back/forward cache (bfcache)
+    window.addEventListener('pagehide', function(event) {
+      if (event.persisted) {
+        console.log('Page may be cached in bfcache');
+      }
+    });
+  </script>
 
   <script>
     // Photo preview script remains the same

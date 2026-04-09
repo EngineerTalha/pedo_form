@@ -1,6 +1,17 @@
 <?php
 // view_applications.php
 require_once 'config.php';
+session_start();
+
+header('Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0');
+header('Cache-Control: post-check=0, pre-check=0', false);
+header('Pragma: no-cache');
+header('Expires: Sun, 19 Nov 1978 05:00:00 GMT');
+
+if (!isset($_SESSION['user_id'])) {
+    header('Location: login.php');
+    exit;
+}
 
 $sql = "SELECT * FROM applications ORDER BY submission_date DESC";
 $result = $conn->query($sql);
