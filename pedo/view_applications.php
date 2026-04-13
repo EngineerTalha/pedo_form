@@ -1,8 +1,7 @@
 <?php
 // view_applications.php
 require_once 'config.php';
-session_start();
-
+$user_id = $_SESSION['user_id'];
 header('Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0');
 header('Cache-Control: post-check=0, pre-check=0', false);
 header('Pragma: no-cache');
@@ -13,7 +12,7 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-$sql = "SELECT * FROM applications ORDER BY submission_date DESC";
+$sql = "SELECT * FROM applications,users WHERE applications.user_id = users.id  ORDER BY applications.submission_date DESC";
 $result = $conn->query($sql);
 ?>
 
@@ -42,7 +41,7 @@ $result = $conn->query($sql);
                 <?php while($row = $result->fetch_assoc()): ?>
                 <tr>
                     <td><?php echo $row['id']; ?></td>
-                    <td><?php echo htmlspecialchars($row['full_name']); ?></td>
+                    <td><input type="text" value="<?php echo htmlspecialchars($row['full_name']); ?>" name="full_name" class="form-control"></td>
                     <td><?php echo $row['eligibility']; ?></td>
                     <td><?php echo $row['total_experience']; ?></td>
                     <td><?php echo $row['submission_date']; ?></td>

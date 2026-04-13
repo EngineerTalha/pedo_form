@@ -17,6 +17,12 @@ $use_user_id_column = false;
 $columns_check = $conn->query("SHOW COLUMNS FROM applications LIKE 'user_id'");
 if ($columns_check && $columns_check->num_rows > 0) {
     $use_user_id_column = true;
+} else {
+    // Add the column automatically if it doesn't exist, to correctly associate applications with users
+    $alter_result = $conn->query("ALTER TABLE applications ADD COLUMN user_id INT(11) NULL AFTER id");
+    if ($alter_result) {
+        $use_user_id_column = true;
+    }
 }
 
 // Check if user already has a submitted application
@@ -157,6 +163,10 @@ $gender = safe_value($data, 'gender');
 $nationality = safe_value($data, 'nationality');
 $phone = safe_value($data, 'phone');
 $email = safe_value($data, 'email');
+$user_email = $_SESSION['email'] ?? '';
+if (!empty($user_email)) {
+    $email = $user_email;
+}
 $present_address = safe_value($data, 'present_address');
 $permanent_address = safe_value($data, 'permanent_address');
 $post_applied_for = safe_value($data, 'post_applied_for');

@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id'])) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     save_temp_uploaded_file('photo', 'photo_path', 'photo');
     save_form_data($_POST);
-    if (isset($_POST['save_next']) || isset($_POST['next'])) {
+    if (isset($_POST['save_next'])) {
         if (isset($_POST['save_next'])) {
             set_form_message('Section A, B and C saved.');
         }
@@ -33,7 +33,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </div>
   <div class="form-container">
     <div class="gov-header">
-      <h1>PEDO Application Form</h1>
+      <div class="gov-header-title-row">
+        <img src="pedo.png" alt="PEDO Logo" class="gov-header-logo">
+        <h1>PEDO Application Form</h1>
+        <img src="KP_logo.png" alt="KP Logo" class="gov-header-logo">
+      </div>
       <p>Step 1 of 4: Section A, B & C</p>
     </div>
 
@@ -177,7 +181,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
       <div class="btn-container">
         <button type="submit" name="save_next" value="1" class="btn-secondary">Save & Next</button>
-        <button type="submit" name="next" value="1">Next</button>
       </div>
     </form>
   </div>

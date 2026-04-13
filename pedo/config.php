@@ -1,5 +1,8 @@
 <?php
 // config.php
+session_start();
+session_regenerate_id(true);
+
 $host = 'localhost';
 $username = 'root';  // Change this to your MySQL username
 $password = '';      // Change this to your MySQL password

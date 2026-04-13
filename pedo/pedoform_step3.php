@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: pedoform_step2.php');
         exit;
     }
-    if (isset($_POST['next']) || isset($_POST['save_next'])) {
+    if (isset($_POST['save_next'])) {
         if (isset($_POST['save_next'])) {
             set_form_message('Section G saved.');
         }
@@ -23,7 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 }
-
 $declarationName = get_form_value('full_name');
 ?>
 <!DOCTYPE html>
@@ -40,7 +39,11 @@ $declarationName = get_form_value('full_name');
   </div>
   <div class="form-container">
     <div class="gov-header">
-      <h1>PEDO Application Form</h1>
+      <div class="gov-header-title-row">
+        <img src="pedo.png" alt="PEDO Logo" class="gov-header-logo">
+        <h1>PEDO Application Form</h1>
+        <img src="KP_logo.png" alt="KP Logo" class="gov-header-logo">
+      </div>
       <p>Step 3 of 4: Section G</p>
     </div>
 
@@ -63,9 +66,16 @@ $declarationName = get_form_value('full_name');
       <div class="btn-container">
         <button type="submit" name="back" value="1" class="btn-secondary">← Back</button>
         <button type="submit" name="save_next" value="1" class="btn-secondary">Save & Next</button>
-        <button type="submit" name="next" value="1">Next</button>
       </div>
     </form>
   </div>
-</body>
-</html>
+  <script>
+    (function() {
+      if (window.history && history.pushState) {
+        history.pushState(null, null, window.location.href);
+        window.addEventListener('popstate', function() {
+          history.pushState(null, null, window.location.href);
+        });
+      }
+    })();
+  </script>

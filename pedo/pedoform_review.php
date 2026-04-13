@@ -19,16 +19,6 @@ if (empty($_SESSION['submission_token'])) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     save_form_data($_POST);
-    if (isset($_POST['reset_form'])) {
-        clear_form_data();
-        header('Location: pedoform.php');
-        exit;
-    }
-    if (isset($_POST['save'])) {
-        set_form_message('Final review data saved.');
-        header('Location: pedoform_review.php');
-        exit;
-    }
     if (isset($_POST['back'])) {
         header('Location: pedoform_step3.php');
         exit;
@@ -49,7 +39,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </div>
   <div class="form-container">
     <div class="gov-header">
-      <h1>PEDO Application Form</h1>
+      <div class="gov-header-title-row">
+        <img src="pedo.png" alt="PEDO Logo" class="gov-header-logo">
+        <h1>PEDO Application Form</h1>
+        <img src="KP_logo.png" alt="KP Logo" class="gov-header-logo">
+      </div>
       <p>Step 4 of 4: Section F — Final Review & Submission</p>
     </div>
 
@@ -72,16 +66,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <input type="checkbox" id="agreeTerms" name="agree_terms" value="1" <?= get_form_value('agree_terms') === '1' ? 'checked' : '' ?> />
           <label for="agreeTerms">I certify that all information provided in this application is true and correct.</label>
         </div>
-        <div class="note-text" style="margin-top: 16px;">Save will preserve the current review data. Submit Application will send everything to the server. Reset Form will clear all saved application progress.</div>
+        <div class="note-text" style="margin-top: 16px;">Save & Next will preserve the current review data and continue. Submit Application will send everything to the server.</div>
       </div>
 
       <div class="btn-container">
         <button type="submit" name="back" value="1" class="btn-secondary">← Back</button>
-        <button type="submit" name="save" value="1" class="btn-secondary">Save</button>
-        <button type="submit" name="reset_form" value="1" class="btn-secondary">Reset Form</button>
+        <button type="submit" formaction="submit_form.php" name="next" value="1">Save &amp; Next</button>
         <button type="submit" formaction="submit_form.php" name="submit_application" value="1">Submit Application</button>
       </div>
     </form>
   </div>
+  <script>
+    (function() {
+      if (window.history && history.pushState) {
+        history.pushState(null, null, window.location.href);
+        window.addEventListener('popstate', function() {
+          history.pushState(null, null, window.location.href);
+        });
+      }
+    })();
+  </script>
 </body>
 </html>

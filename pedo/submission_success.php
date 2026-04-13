@@ -143,17 +143,6 @@ unset($_SESSION['submission_success']);
       <?php endif; ?>
     </div>
 
-    <?php if ($application_id): ?>
-      <div class="application-id">
-        <label>Application ID:</label>
-        <span>#<?php echo htmlspecialchars($application_id, ENT_QUOTES); ?></span>
-      </div>
-    <?php endif; ?>
-
-    <div class="note">
-      ℹ️ Please save your Application ID for your records. You can use it to track your application status.
-    </div>
-
     <div class="btn-container">
       <a href="view_applications.php" class="btn">View My Applications</a>
       <?php if (!$is_duplicate): ?>

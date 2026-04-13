@@ -86,6 +86,26 @@ body {
   letter-spacing: -0.3px;
 }
 
+.gov-header-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px 0;
+}
+
+.gov-header-title-row h1 {
+  margin: 0;
+  flex: 1;
+}
+
+.gov-header-logo {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
 .gov-header h2 {
   font-size: 1.2rem;
   font-weight: 500;
@@ -98,6 +118,22 @@ body {
   color: #4a5b6e;
   margin-top: 10px;
   margin-bottom: 12px;
+}
+
+@media (max-width: 640px) {
+  .gov-header-logo {
+    width: 42px;
+    height: 42px;
+  }
+
+  .gov-header-title-row {
+    gap: 8px;
+    padding: 10px 8px 0;
+  }
+
+  .gov-header h1 {
+    font-size: 1.35rem;
+  }
 }
 
 
@@ -617,7 +653,7 @@ footer {
   background: #1e6b3e;
   color: white;
   position: relative;
-  left: 40px;
+  left: 0px;
 }
 
 .btn-primary1 {
@@ -634,7 +670,7 @@ footer {
   background: #1e6b3e;
   color: white;
   position: relative;
-  left: 30px;
+  left: 45px;
 }
 
 .btn-primary:hover {
@@ -654,13 +690,14 @@ footer {
   cursor: pointer;
   border: none;
   text-align: center;
-  background: transparent;
+  background: #1e6b3e;
   color: #ffffff;
-  border: 2px solid #ffffff;
+  position: relative;
+  left: 0px;
 }
 
 .btn-secondary:hover {
-  background: #e8f3ec;
+  background: #0f5330;
   transform: translateY(-2px);
 }
 

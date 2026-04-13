@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 function get_form_value($name, $default = '') {
     if (!isset($_SESSION['application_data'])) {
