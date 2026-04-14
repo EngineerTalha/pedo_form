@@ -669,7 +669,24 @@ footer {
   background: #1e6b3e;
   color: white;
   position: relative;
-  left: 40px;
+  left: 0px;
+}
+
+.btn-primary3 {
+  display: inline-block;
+  padding: 14px 32px;
+  border-radius: 40px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: 0.2s;
+  cursor: pointer;
+  border: none;
+  text-align: center;
+  background: #1e6b3e;
+  color: white;
+  position: relative;
+  left: 30px;
 }
 
 .btn-primary1 {

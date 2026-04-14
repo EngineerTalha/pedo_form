@@ -118,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <input type="password" id="confirmPassword" name="confirm_password" placeholder="Re-enter your password" required>
         </div>
 
-        <button type="submit" class="btn-primary btn-full">Create Account</button>
+        <button type="submit" class="btn-primary3 btn-full">Create Account</button>
       </form>
 
       <div class="auth-footer">
