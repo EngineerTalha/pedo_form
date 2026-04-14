@@ -10,28 +10,30 @@ body {
   padding: 50px 30px;
   color: #1a2c3e;
 }
-
-/* Logo sizing and positioning */
-.header-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  flex-wrap: wrap;
+/* LEFT LOGO - Position relative for ALL screen sizes */
+.gov-header-logo:first-child {
+  width: 98px;
+  height: auto;
+  object-fit: contain;
+  flex-shrink: 0;
 }
+
+
+
 
 .logo-left,
 .logo-right {
-  flex: 0 0 auto;
-  width: 80px;  /* Adjust this value to change logo container width */
+  width: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.header-logo {
-  width: 100%;     /* Makes logo fill the container width */
-  max-width: 80px; /* Maximum width - adjust as needed */
-  height: auto;    /* Maintains aspect ratio */
-  display: block;
+.gov-header-logo {
+  width: 70px;
+  height: auto;
 }
+
 
 .circle-frame {
   margin-left: 2px;
@@ -72,7 +74,7 @@ body {
 
 /* header styles */
 .gov-header {
-  background: #b0bcde;
+  background: #ffffff;
   color: #1eca63;  
   text-align: center;
   border-bottom: 3px solid #2c7a4d;
@@ -90,8 +92,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  padding: 10px 14px 0;
+  max-width: 600px; /* controls layout width */
+  margin: 0 auto; /* center the whole header */
+  padding: 10px 20px;
 }
 
 .gov-header-title-row h1 {
@@ -99,12 +102,25 @@ body {
   flex: 1;
 }
 
-.gov-header-logo {
-  width: 58px;
-  height: 58px;
+.gov-header-logo1 {
+  width: 98px;
+  height: auto;
   object-fit: contain;
   flex-shrink: 0;
+  position: relative;
+  left: 200px;
 }
+
+.gov-header-logo2 {
+  width: 98px;
+  height: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+  position: relative;
+  left: 200px;
+}
+
+
 
 .gov-header h2 {
   font-size: 1.2rem;
@@ -122,8 +138,8 @@ body {
 
 @media (max-width: 640px) {
   .gov-header-logo {
-    width: 42px;
-    height: 42px;
+    width: 70px;
+    height: auto;
   }
 
   .gov-header-title-row {
@@ -790,3 +806,4 @@ footer {
     text-align: center;
   }
 }
+

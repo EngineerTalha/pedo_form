@@ -34,9 +34,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <div class="form-container">
     <div class="gov-header">
       <div class="gov-header-title-row">
-        <img src="pedo.png" alt="PEDO Logo" class="gov-header-logo">
-        <h1>PEDO Application Form</h1>
-        <img src="KP_logo.png" alt="KP Logo" class="gov-header-logo">
+      <div class="logo-left">
+  <img src="pedo.png" class="gov-header-logo">
+</div>
+
+<div class="header-text">
+  <h1>PEDO Application Form</h1>
+</div>
+
+<div class="logo-right">
+  <img src="KP_logo.png" class="gov-header-logo">
+</div>
       </div>
       <p>Step 1 of 4: Section A, B & C</p>
     </div>
