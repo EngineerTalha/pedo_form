@@ -1,17 +1,20 @@
 <?php
+// pedoform_helpers.php
 
 function get_form_value($name, $default = '') {
     if (!isset($_SESSION['application_data'])) {
         return htmlspecialchars($default, ENT_QUOTES);
     }
-    return htmlspecialchars($_SESSION['application_data'][$name] ?? $default, ENT_QUOTES);
+    $value = $_SESSION['application_data'][$name] ?? $default;
+    return is_array($value) ? $value : htmlspecialchars($value, ENT_QUOTES);
 }
 
-function get_form_array_value($name, $index, $default = '') {
-    if (empty($_SESSION['application_data'][$name]) || !is_array($_SESSION['application_data'][$name])) {
+function get_form_array_value($name, $index, $field, $default = '') {
+    if (!isset($_SESSION['application_data'][$name]) || !is_array($_SESSION['application_data'][$name])) {
         return htmlspecialchars($default, ENT_QUOTES);
     }
-    return htmlspecialchars($_SESSION['application_data'][$name][$index] ?? $default, ENT_QUOTES);
+    $value = $_SESSION['application_data'][$name][$index][$field] ?? $default;
+    return htmlspecialchars($value, ENT_QUOTES);
 }
 
 function save_form_data($post) {
@@ -20,7 +23,8 @@ function save_form_data($post) {
     }
 
     foreach ($post as $name => $value) {
-        if (in_array($name, ['next', 'save_next', 'save', 'back', 'reset_form', 'submit_application'], true)) {
+        // Skip action buttons
+        if (in_array($name, ['next', 'save_next', 'save', 'back', 'reset_form', 'submit_application', 'submission_token'], true)) {
             continue;
         }
         $_SESSION['application_data'][$name] = $value;
@@ -65,7 +69,18 @@ function set_form_message($message) {
 
 function show_form_message() {
     if (!empty($_SESSION['form_message'])) {
-        echo '<div class="note-text" style="background: #e8f7e8; color: #1f5c2c; margin-bottom: 18px;">' . htmlspecialchars($_SESSION['form_message'], ENT_QUOTES) . '</div>';
+        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="fas fa-check-circle me-2"></i>' . htmlspecialchars($_SESSION['form_message'], ENT_QUOTES) . '
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              </div>';
         unset($_SESSION['form_message']);
     }
 }
+
+function get_qualifications_count() {
+    if (!empty($_SESSION['application_data']['qualifications']) && is_array($_SESSION['application_data']['qualifications'])) {
+        return count($_SESSION['application_data']['qualifications']);
+    }
+    return 0;
+}
+?>
